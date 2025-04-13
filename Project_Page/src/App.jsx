@@ -36,7 +36,7 @@ function App() {
           <h1>AlgoViz: Machine Learning Algorithm Visualizer</h1>
           <div className="author-info">
             <p>
-              <strong>Authors:</strong> 
+              <strong>Contributors:</strong> 
               <a href="https://github.com/darshpatel1052" target="_blank" rel="noopener noreferrer"> Darsh Patel</a>,
               <a href="https://github.com/Priyanshu-Shah" target="_blank" rel="noopener noreferrer"> Priyanshu Shah</a>,
               <a href="https://github.com/ChanchalYadav12" target="_blank" rel="noopener noreferrer"> Chanchal Yadav</a>,
@@ -189,7 +189,10 @@ function App() {
                 <li>Decision tree visualization and SVM implementation</li>
                 <li>API development for algorithm execution</li>
               </ul>
-              <a href="https://github.com/darshpatel1052" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile</a>
+              <div className="member-links">
+                <a href="https://github.com/darshpatel1052" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile  </a>
+                <a href="https://linkedin.com/in/darshpatel52" target="_blank" rel="noopener noreferrer" className="member-link">LinkedIn</a>
+              </div>
             </div>
             
             <div className="team-member">
@@ -200,7 +203,10 @@ function App() {
                 <li>Algorithm optimization and performance tuning</li>
                 <li>Data preprocessing utilities</li>
               </ul>
-              <a href="https://github.com/Priyanshu-Shah" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile</a>
+              <div className="member-links">
+                <a href="https://github.com/Priyanshu-Shah" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile  </a>
+                <a href="https://linkedin.com/in/priyanshu-v-shah" target="_blank" rel="noopener noreferrer" className="member-link">LinkedIn</a>
+              </div>
             </div>
 
             <div className="team-member">
@@ -211,7 +217,10 @@ function App() {
                 <li>K-means clustering implementation</li>
                 <li>UI/UX design and responsiveness</li>
               </ul>
-              <a href="https://github.com/ChanchalYadav12" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile</a>
+              <div className="member-links">
+              <a href="https://github.com/ChanchalYadav12" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile  </a>
+              <a href="https://linkedin.com/in/chanchal-yadav-00632228b" target="_blank" rel="noopener noreferrer" className="member-link">LinkedIn</a>
+              </div>
             </div>
 
             <div className="team-member">
@@ -222,7 +231,10 @@ function App() {
                 <li>Animation and transition effects</li>
                 <li>Cross-browser compatibility</li>
               </ul>
-              <a href="https://github.com/BhargavShekokar3425" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile</a>
+              <div className="member-links">
+                <a href="https://github.com/BhargavShekokar3425" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile  </a>
+                <a href="https://linkedin.com/in/bhargav-shekokar" target="_blank" rel="noopener noreferrer" className="member-link">LinkedIn</a>
+              </div>
             </div>
 
             <div className="team-member">
@@ -233,7 +245,10 @@ function App() {
                 <li>Performance metrics calculation</li>
                 <li>Sample dataset curation</li>
               </ul>
-              <a href="https://github.com/ArunCS1005" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile</a>
+              <div className="member-links">
+                <a href="https://github.com/ArunCS1005" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile  </a>
+                <a href="https://linkedin.com/in/arun-kumar-936847298" target="_blank" rel="noopener noreferrer" className="member-link">LinkedIn</a>
+              </div>
             </div>
 
             <div className="team-member">
@@ -244,7 +259,10 @@ function App() {
                 <li>Testing and quality assurance</li>
                 <li>Polynomial regression implementation</li>
               </ul>
-              <a href="https://github.com/Asinat123" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile</a>
+              <div className="member-links">
+                <a href="https://github.com/Asinat123" target="_blank" rel="noopener noreferrer" className="member-link">GitHub Profile  </a>
+                <a href="https://linkedin.com/in/tanisha-saini-222791289" target="_blank" rel="noopener noreferrer" className="member-link">LinkedIn</a>
+              </div>
             </div>
           </div>
         </section>
