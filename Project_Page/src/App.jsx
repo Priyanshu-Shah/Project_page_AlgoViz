@@ -60,8 +60,7 @@ function App() {
           dynamic visualizations. The platform enables users to explore, modify, and visualize the behavior of various ML algorithms 
           in real time. It supports supervised learning algorithms like Polynomial Regression, K-Nearest Neighbors (KNN), Decision 
           Trees, Support Vector Machines (SVM), and Artificial Neural Networks (ANN), as well as unsupervised techniques such as K-Means 
-          Clustering, DBSCAN, and Principal Component Analysis (PCA). By offering features like real-time parameter tuning, 3D 
-          visualizations and guided tutorials, AlgoViz creates an immersive and engaging learning experience for users ranging from 
+          Clustering, DBSCAN, and Principal Component Analysis (PCA). By offering features like real-time parameter tuning and guided tutorials, AlgoViz creates an immersive and engaging learning experience for users ranging from 
           beginners to advanced practitioners. This report outlines the development process, architecture, implemented algorithms, 
           interactive features, and future scope of the project.
           </p>
