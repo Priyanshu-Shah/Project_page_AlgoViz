@@ -1,0 +1,296 @@
+# import numpy as np
+
+# def calculate_covariance_matrix(data_points, verbose=True):
+#     """
+#     Calculate the covariance matrix for a list of data points
+#     with detailed step-by-step explanation
+    
+#     Parameters:
+#     data_points: List of lists or numpy array, where each inner list is a data point
+#     verbose: Boolean, whether to print intermediate steps
+    
+#     Returns:
+#     covariance_matrix: Numpy array
+#     """
+#     # Convert to numpy array if not already
+#     data = np.array(data_points)
+    
+#     if verbose:
+#         print("Input data points:")
+#         for i, point in enumerate(data):
+#             print(f"Point {i+1}: {point}")
+#         print("\n")
+    
+#     # Step 1: Calculate the mean vector
+#     mean_vector = np.mean(data, axis=0)
+    
+#     if verbose:
+#         print(f"Step 1: Calculate the mean vector")
+#         print(f"Mean vector = {mean_vector}")
+#         print("\n")
+    
+#     # Step 2: Subtract the mean from each data point (center the data)
+#     centered_data = data - mean_vector
+    
+#     if verbose:
+#         print(f"Step 2: Subtract mean from each data point")
+#         print(f"Mean vector: {mean_vector}")
+#         for i, (original, centered) in enumerate(zip(data, centered_data)):
+#             print(f"Point {i+1}: {original} - {mean_vector} = {centered}")
+#         print("\n")
+    
+#     # Step 3: For each pair of dimensions, calculate the product of deviations
+#     n = len(data)
+#     d = len(mean_vector)  # number of dimensions
+    
+#     products = np.zeros((n, d, d))
+    
+#     if verbose:
+#         print(f"Step 3: Calculate products of deviations for each data point")
+    
+#     for i in range(n):
+#         # Outer product of the centered data point with itself
+#         outer_product = np.outer(centered_data[i], centered_data[i])
+#         products[i] = outer_product
+        
+#         if verbose:
+#             print(f"\nData point {i+1} deviations: {centered_data[i]}")
+#             print(f"Outer product matrix for point {i+1}:")
+#             print(outer_product)
+    
+#     # Step 4: Sum all the product matrices
+#     sum_products = np.sum(products, axis=0)
+    
+#     if verbose:
+#         print("\nStep 4: Sum all product matrices")
+#         print(f"Sum of all products:")
+#         print(sum_products)
+    
+#     # Step 5: Divide by n-1 (unbiased estimator for sample covariance)
+#     covariance_matrix = sum_products / (n - 1)
+    
+#     if verbose:
+#         print("\nStep 5: Divide by (n-1)")
+#         print(f"n = {n}, n-1 = {n-1}")
+#         print(f"Covariance matrix = Sum of products / {n-1}:")
+#         print(covariance_matrix)
+    
+#     return covariance_matrix
+
+# # Example usage:
+# if __name__ == "__main__":
+#     # Sample data: 4 points with 3 dimensions each
+#     data_points = [
+#         [1,2],
+#         [3,4],
+#         [4,5],
+#         [5,5],
+#         [5,6],
+#         [10,10]
+#     ]
+    
+#     print("=== COVARIANCE MATRIX CALCULATION ===\n")
+#     cov_matrix = calculate_covariance_matrix(data_points)
+    
+#     print("\nVerification using NumPy's built-in function:")
+#     numpy_cov = np.cov(np.array(data_points).T)
+#     print(numpy_cov)
+    
+#     print("\nAre the results equal?", np.allclose(cov_matrix, numpy_cov))
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+
+def perform_pca(data_points, n_components=2, verbose=True):
+    """
+    Perform PCA on a list of data points with detailed step-by-step explanation
+    
+    Parameters:
+    data_points: List of lists or numpy array, where each inner list is a data point
+    n_components: Number of principal components to keep
+    verbose: Boolean, whether to print intermediate steps
+    
+    Returns:
+    projected_data: Data projected onto principal components
+    reconstructed_data: Data reconstructed from the projection
+    reconstruction_error: Mean squared error of reconstruction
+    components: Principal components (eigenvectors)
+    """
+    # Convert to numpy array if not already
+    data = np.array(data_points)
+    
+    if verbose:
+        print("=== PRINCIPAL COMPONENT ANALYSIS (PCA) ===\n")
+        print("Input data points:")
+        for i, point in enumerate(data):
+            print(f"Point {i+1}: {point}")
+        print("\n")
+    
+    # Step 1: Calculate the mean vector
+    mean_vector = np.mean(data, axis=0)
+    
+    if verbose:
+        print(f"Step 1: Calculate the mean vector")
+        print(f"Mean vector = {mean_vector}")
+        print("\n")
+    
+    # Step 2: Subtract the mean from each data point (center the data)
+    centered_data = data - mean_vector
+    
+    if verbose:
+        print(f"Step 2: Subtract mean from each data point (zero-mean data)")
+        print(f"Mean vector: {mean_vector}")
+        for i, (original, centered) in enumerate(zip(data, centered_data)):
+            print(f"Point {i+1}: {original} - {mean_vector} = {centered}")
+        print("\n")
+    
+    # Step 3: Calculate the covariance matrix
+    n = len(data)
+    cov_matrix = np.dot(centered_data.T, centered_data) / (n - 1)
+    
+    if verbose:
+        print("Step 3: Calculate the covariance matrix")
+        print("Covariance Matrix:")
+        print(cov_matrix)
+        print("\n")
+    
+    # Step 4: Calculate eigenvalues and eigenvectors
+    eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+    
+    # Sort eigenvectors by decreasing eigenvalues
+    idx = eigenvalues.argsort()[::-1]
+    eigenvalues = eigenvalues[idx]
+    eigenvectors = eigenvectors[:, idx]
+    
+    if verbose:
+        print("Step 4: Calculate eigenvalues and eigenvectors")
+        print("Eigenvalues (sorted in descending order):")
+        for i, val in enumerate(eigenvalues):
+            print(f"λ{i+1} = {val.real:.6f}")
+        
+        print("\nEigenvectors (columns, sorted by corresponding eigenvalues):")
+        print(eigenvectors)
+        
+        # Calculate explained variance ratio
+        total_var = np.sum(eigenvalues)
+        explained_var_ratio = eigenvalues / total_var
+        cumulative_var_ratio = np.cumsum(explained_var_ratio)
+        
+        print("\nExplained Variance Ratio:")
+        for i, ratio in enumerate(explained_var_ratio):
+            print(f"PC{i+1}: {ratio.real*100:.2f}%")
+        
+        print("\nCumulative Explained Variance:")
+        for i, ratio in enumerate(cumulative_var_ratio):
+            print(f"PC1-PC{i+1}: {ratio.real*100:.2f}%")
+        print("\n")
+    
+    # Step 5: Select top n_components eigenvectors (principal components)
+    n_components = min(n_components, len(eigenvalues))
+    components = eigenvectors[:, :n_components]
+    
+    if verbose:
+        print(f"Step 5: Select top {n_components} principal components")
+        print("Selected Principal Components:")
+        print(components)
+        print("\n")
+    
+    # Step 6: Project the data onto the principal components
+    projected_data = np.dot(centered_data, components)
+    
+    if verbose:
+        print("Step 6: Project data onto principal components")
+        print("Projection Matrix (Principal Components):")
+        print(components)
+        print("\nProjected Data:")
+        for i, point in enumerate(projected_data):
+            print(f"Projected Point {i+1}: {point}")
+        print("\n")
+    
+    # Step 7: Reconstruct the data from the projection
+    reconstructed_centered = np.dot(projected_data, components.T)
+    reconstructed_data = reconstructed_centered + mean_vector
+    
+    if verbose:
+        print("Step 7: Reconstruct data from projection")
+        print("Reconstructed Data (after adding back the mean):")
+        for i, point in enumerate(reconstructed_data):
+            print(f"Reconstructed Point {i+1}: {point}")
+        print("\n")
+    
+    # Step 8: Calculate reconstruction error
+    reconstruction_error = np.mean(np.square(data - reconstructed_data))
+    
+    if verbose:
+        print("Step 8: Calculate reconstruction error")
+        print("Original vs Reconstructed:")
+        for i, (orig, recon) in enumerate(zip(data, reconstructed_data)):
+            print(f"Point {i+1}: Original {orig} → Reconstructed {recon}")
+            print(f"   Squared error: {np.sum(np.square(orig - recon))}")
+        
+        print(f"\nMean Squared Reconstruction Error: {reconstruction_error}")
+    
+    return projected_data, reconstructed_data, reconstruction_error, components
+
+def visualize_pca(data, projected_data, reconstructed_data, components, mean_vector):
+    """Visualize the PCA results for 2D data"""
+    plt.figure(figsize=(15, 10))
+    
+    # Original data
+    plt.subplot(2, 2, 1)
+    plt.scatter(data[:, 0], data[:, 1], alpha=0.7)
+    plt.title("Original Data")
+    plt.grid(True)
+    
+    # Centered data with principal components
+    plt.subplot(2, 2, 2)
+    centered_data = data - mean_vector
+    plt.scatter(centered_data[:, 0], centered_data[:, 1], alpha=0.7)
+    
+    # Plot principal components
+    for i, component in enumerate(components.T):
+        plt.arrow(0, 0, component[0]*3, component[1]*3, 
+                 head_width=0.2, head_length=0.3, fc='red', ec='red',
+                 label=f"PC{i+1}")
+    
+    plt.title("Centered Data with Principal Components")
+    plt.grid(True)
+    plt.legend()
+    
+    # Projected data (1D visualization if first component only)
+    plt.subplot(2, 2, 3)
+    if projected_data.shape[1] == 1:
+        plt.scatter(projected_data[:, 0], np.zeros_like(projected_data[:, 0]), alpha=0.7)
+        plt.title("Data Projected onto First Principal Component")
+    else:
+        plt.scatter(projected_data[:, 0], projected_data[:, 1], alpha=0.7)
+        plt.title("Data Projected onto First Two Principal Components")
+    plt.grid(True)
+    
+    # Reconstructed data
+    plt.subplot(2, 2, 4)
+    plt.scatter(reconstructed_data[:, 0], reconstructed_data[:, 1], alpha=0.7)
+    plt.title("Reconstructed Data")
+    plt.grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+
+# Example usage:
+if __name__ == "__main__":
+    # Create sample data - 30 points with 2 dimensions
+    data_points, _ = make_blobs(n_samples=20, centers=1, cluster_std=1.5, random_state=42)
+    
+    # Add some correlation to make the example more interesting
+    rotation_matrix = np.array([[0.8, -0.6], [0.6, 0.8]])
+    data_points = np.dot(data_points, rotation_matrix)
+    
+    # Perform PCA
+    projected_data, reconstructed_data, error, components = perform_pca(
+        data_points, n_components=2, verbose=True)
+    
+    # For 2D data, visualize the results
+    if data_points.shape[1] == 2:
+        mean_vector = np.mean(data_points, axis=0)
+        visualize_pca(data_points, projected_data, reconstructed_data, components, mean_vector)

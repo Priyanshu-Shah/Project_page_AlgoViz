@@ -56,10 +56,14 @@ function App() {
         <section className="overview-section">
           <h2>Overview</h2>
           <p>
-            AlgoViz is a machine learning algorithm visualizer designed to help students, teachers and developers understand 
-            machine learning algorithms through interactive visualizations. The platform provides a user-friendly interface
-            to visualize various algorithms, including decision trees, neural networks, and clustering algorithms. Users can
-            adjust parameters, view step-by-step execution, and see how different algorithms perform on various data, including various sample datasets.
+          AlgoViz is an interactive tool designed to make machine learning (ML) algorithms more accessible and comprehensible through 
+          dynamic visualizations. The platform enables users to explore, modify, and visualize the behavior of various ML algorithms 
+          in real time. It supports supervised learning algorithms like Polynomial Regression, K-Nearest Neighbors (KNN), Decision 
+          Trees, Support Vector Machines (SVM), and Artificial Neural Networks (ANN), as well as unsupervised techniques such as K-Means 
+          Clustering, DBSCAN, and Principal Component Analysis (PCA). By offering features like real-time parameter tuning, 3D 
+          visualizations and guided tutorials, AlgoViz creates an immersive and engaging learning experience for users ranging from 
+          beginners to advanced practitioners. This report outlines the development process, architecture, implemented algorithms, 
+          interactive features, and future scope of the project.
           </p>
         </section>
 
@@ -155,7 +159,7 @@ function App() {
             <div className="deliverable-item">
               <h3>Demo Video</h3>
               <p>Walkthrough demonstration of the AlgoViz platform and its key features.</p>
-              <a href="https://www.youtube.com/watch?v=demovideolink" target="_blank" rel="noopener noreferrer" className="button">Watch Demo</a>
+              <a href="https://youtu.be/5Cre37hI_L0" target="_blank" rel="noopener noreferrer" className="button">Watch Demo</a>
             </div>
             
             <div className="deliverable-item">
@@ -462,10 +466,16 @@ function App() {
         <section className="acknowledgments-section">
           <h2>Acknowledgments</h2>
           <p>
-            This project was supported by our professor Dr.Anand Mishra, who provided invaluable guidance and resources.
-            We also thank our peers and mentors for their feedback and encouragement throughout the development process.
-            Special thanks to the open-source community for providing libraries and tools that made this project possible.
-            Also, we would like to express our gratitude for the cloud credits provided by professor Mishra for hosting the services.
+            We extend our heartfelt gratitude to our professor, Dr. Anand Mishra, for his invaluable guidance, mentorship, and support throughout the development of this project. His expertise and encouragement have been instrumental in shaping the vision and execution of AlgoViz.
+          </p>
+          <p>
+            We also wish to thank our peers and mentors for their constructive feedback, insightful suggestions, and unwavering support, which have greatly contributed to the success of this project. Their collaboration and encouragement have been a source of inspiration.
+          </p>
+          <p>
+            A special thanks to the open-source community for providing the libraries, tools, and resources that made this project possible. The contributions of countless developers and researchers have been pivotal in enabling us to build a robust and feature-rich platform.
+          </p>
+          <p>
+            Lastly, we are deeply grateful for the cloud credits provided by Dr. Mishra, which allowed us to deploy and scale our application seamlessly. This support has been critical in ensuring the accessibility and performance of AlgoViz for all users.
           </p>
         </section>
       </main>
