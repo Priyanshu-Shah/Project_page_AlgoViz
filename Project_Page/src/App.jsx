@@ -170,7 +170,7 @@ function App() {
             <div className="deliverable-item">
               <h3>Spotlight Video</h3>
               <p>A concise overview of the project highlighting its innovation and impact.</p>
-              <a href="https://youtu.be/tQl1dH-tbdw" target="_blank" rel="noopener noreferrer" className="button">Watch Spotlight</a>
+              <a href="https://youtu.be/EY8cjQ-HVgU" target="_blank" rel="noopener noreferrer" className="button">Watch Spotlight</a>
             </div>
             
             <div className="deliverable-item">
