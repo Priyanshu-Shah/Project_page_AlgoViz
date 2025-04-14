@@ -177,7 +177,7 @@ function App() {
             <div className="deliverable-item">
               <h3>Meeting Minutes</h3>
               <p>Documentation of team meetings, decisions, and progress throughout the project timeline.</p>
-              <a href="/meeting-minutes.pdf" target="_blank" rel="noopener noreferrer" className="button">View Minutes</a>
+              <a href="/mom.pdf" target="_blank" rel="noopener noreferrer" className="button">View Minutes</a>
             </div>
           </div>
         </section>
